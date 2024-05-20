@@ -1,0 +1,17 @@
+--------------------
+Package Information
+
+File Size:
+- Original = 336x248
+- 2x = 672x496
+- 3x = 1008x744
+
+Contains 24 battlebacks split by the following categories:
+- Desert
+- Oasis
+- Fields A (Lakeside)
+- Fields B (Clearing)
+- Meadows
+- Mountain A (Climb)
+- Mountain B (Peaks)
+- Wasteland

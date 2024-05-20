@@ -1,0 +1,9 @@
+--------------------
+Package Information
+
+Frame Size:
+- Original = 16x20
+- 2x = 32x40
+- 3x = 38x60
+
+Sprites Folder (Original & RPG Maker): Contains 16 sprites + 16 variations.
