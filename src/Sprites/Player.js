@@ -13,10 +13,33 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // add our player to the scene
     this.scene.add.existing(this);
     // scale our player
-    this.setScale(10);
+    this.setScale(9.5);
 
     this.scene.events.emit("playerCreate", this.health);
     this.speed = 350;
+  }
+
+  preload() {
+    this.load.spritesheet("player", "assets/characters/Rogue_M6.png", {
+      frameWidth: 23,
+      frameHeight: 32,
+    });
+
+    this.arrow = this.add.sprite(359, 277, "player");
+    this.arrow.setOrigin(0, 0);
+    this.arrow.setScale(5);
+    let char = 2;
+    let len = 3;
+
+    this.anims.create({
+      key: "walking_down",
+      frames: this.anims.generateFrameNumbers("test1", {
+        start: start,
+        end: start + len - 1,
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
   }
 
   update(cursors) {

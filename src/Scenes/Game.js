@@ -24,7 +24,24 @@ export default class GameScene extends Phaser.Scene {
     // listen for the resize event
     this.scale.on("resize", this.resize, this);
     // listen for player input
-    this.cursors = this.input.keyboard.createCursorKeys();
+
+    this.cursors = this.input.keyboard.addKeys({
+      up: "W",
+      left: "A",
+      down: "S",
+      right: "D",
+      one: "1",
+      two: "2",
+      three: "3",
+      four: "4",
+      five: "5",
+      six: "6",
+      seven: "7",
+      eight: "8",
+      nine: "9",
+      zero: "0",
+    });
+    // -> { up: Key, left: Key, down: Key, right: Key }
     this.spaceKey = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
     );

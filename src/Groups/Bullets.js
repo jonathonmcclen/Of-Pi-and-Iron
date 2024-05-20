@@ -1,26 +1,26 @@
-import 'phaser';
+import "phaser";
 
 export default class Bullets extends Phaser.Physics.Arcade.Group {
-  constructor (world, scene, children) {
+  constructor(world, scene, children) {
     super(world, scene, children);
     this.scene = scene;
 
     this.createMultiple({
-      frameQuantity: 5,
-      key: 'bullet',
+      frameQuantity: 20,
+      key: "bullet",
       active: false,
-      visible: false
+      visible: false,
     });
   }
 
-  enemyCollision (bullet, enemy) {
+  enemyCollision(bullet, enemy) {
     bullet.active = false;
     bullet.visible = false;
     bullet.destroy();
     enemy.loseHealth();
   }
 
-  fireBullet (x, y, direction) {
+  fireBullet(x, y, direction) {
     const bullet = this.getFirstDead(false);
     if (bullet) {
       this.scene.physics.add.existing(bullet);
@@ -30,16 +30,16 @@ export default class Bullets extends Phaser.Physics.Arcade.Group {
       bullet.setScale(0.1);
 
       switch (direction) {
-        case 'up':
+        case "up":
           bullet.body.setVelocityY(-300);
           break;
-        case 'down':
+        case "down":
           bullet.body.setVelocityY(300);
           break;
-        case 'left':
+        case "left":
           bullet.body.setVelocityX(-300);
           break;
-        case 'right':
+        case "right":
           bullet.body.setVelocityX(300);
           break;
         default:
@@ -53,9 +53,9 @@ export default class Bullets extends Phaser.Physics.Arcade.Group {
           bullet.visible = false;
           if (bullet.body) {
             bullet.body.setVelocity(0);
-            bullet.destroy();   
+            bullet.destroy();
           }
-        }
+        },
       });
     }
   }
