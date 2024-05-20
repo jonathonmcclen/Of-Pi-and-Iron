@@ -21,8 +21,6 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    // listen for the resize event
-    this.scale.on("resize", this.resize, this);
     // listen for player input
 
     this.cursors = this.input.keyboard.addKeys({
@@ -41,11 +39,16 @@ export default class GameScene extends Phaser.Scene {
       nine: "9",
       zero: "0",
     });
-    // -> { up: Key, left: Key, down: Key, right: Key }
+
     this.spaceKey = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
     );
 
+    this.shiftKey = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.SHIFT
+    );
+
+    // Draw Order
     // create our tilemap
     this.createMap();
     // create our player
@@ -72,6 +75,12 @@ export default class GameScene extends Phaser.Scene {
     this.player.update(this.cursors);
 
     if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
+      this.bullets.fireBullet(
+        this.player.x,
+        this.player.y,
+        this.player.direction
+      );
+    } else if (Phaser.Input.Keyboard.JustDown(this.shiftKey)) {
       this.bullets.fireBullet(
         this.player.x,
         this.player.y,
