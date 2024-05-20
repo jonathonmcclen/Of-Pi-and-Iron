@@ -7,16 +7,16 @@ export default class BootScene extends Phaser.Scene {
 
   preload() {
     this.levels = {
-      1: "level1",
+      1: "SetV1",
       2: "level2",
     };
     // load in the tilemap
-    this.load.tilemapTiledJSON("level1", "assets/tilemaps/SetV1.json");
+    this.load.tilemapTiledJSON("SetV1", "assets/tilemaps/SetV1.json");
     this.load.tilemapTiledJSON("level2", "assets/tilemaps/level2.json");
     // load in the spritesheet
-    this.load.spritesheet("RPGpack_sheet", "assets/images/RPGpack_sheet.png", {
-      frameWidth: 64,
-      frameHeight: 64,
+    this.load.spritesheet("SetV1", "assets/OverWorld/SetV1.png", {
+      frameWidth: 16,
+      frameHeight: 16,
     });
     // load in our character spritesheet
     this.load.spritesheet(

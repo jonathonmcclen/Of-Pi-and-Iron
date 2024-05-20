@@ -92,7 +92,7 @@ export default class GameScene extends Phaser.Scene {
     this.map.findObject("Player", (obj) => {
       if (this._NEWGAME && this._LEVEL === 1) {
         if (obj.type === "StartingPosition") {
-          this.player = new Player(this, obj.x, obj.y);
+          this.player = new Player(this, obj.x * 10, obj.y * 10);
         }
       } else {
         if (obj.type === "StartingPositionPortal") {
@@ -126,14 +126,19 @@ export default class GameScene extends Phaser.Scene {
 
   createMap() {
     // add water background
-    this.add.tileSprite(0, 0, 8000, 8000, "RPGpack_sheet", 31);
+    this.add.tileSprite(0, 0, 100, 0, "SetV1", 31);
     // // create the tilemap
     this.map = this.make.tilemap({ key: this._LEVELS[this._LEVEL] });
     // // add tileset image
-    this.tiles = this.map.addTilesetImage("RPGpack_sheet");
+    this.tiles = this.map.addTilesetImage("SetV1");
+
     // // create our layers
-    this.backgroundLayer = this.map.createLayer("Background", this.tiles, 0, 0);
-    this.blockedLayer = this.map.createLayer("Blocked", this.tiles, 0, 0);
+    this.backgroundLayer = this.map.createLayer("bg", this.tiles, 0, 0);
+    this.backgroundLayer.setScale(10);
+    this.blockedLayer = this.map.createLayer("bg2", this.tiles, 0, 0);
+    this.blockedLayer.setScale(10);
+    this.blockedLayer = this.map.createLayer("blocked", this.tiles, 0, 0);
+    this.blockedLayer.setScale(10);
     this.blockedLayer.setCollisionByExclusion([-1]);
   }
 
