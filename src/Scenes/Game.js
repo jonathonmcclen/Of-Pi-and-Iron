@@ -163,9 +163,24 @@ export default class GameScene extends Phaser.Scene {
     this.backgroundLayer.setScale(10);
     this.blockedLayer = this.map.createLayer("bg2", this.tiles, 0, 0);
     this.blockedLayer.setScale(10);
+    this.blockedLayer = this.map.createLayer("bottoms", this.tiles, 0, 0);
+    this.blockedLayer.setScale(10);
     this.blockedLayer = this.map.createLayer("blocked", this.tiles, 0, 0);
     this.blockedLayer.setScale(10);
     this.blockedLayer.setCollisionByExclusion([-1]);
+  }
+
+  drawBottoms() {
+    // add water background
+    this.add.tileSprite(0, 0, 100, 0, "SetV1", 31);
+    // // create the tilemap
+    this.map = this.make.tilemap({ key: this._LEVELS[this._LEVEL] });
+    // // add tileset image
+    this.tiles = this.map.addTilesetImage("SetV1");
+
+    // // create our layers
+    this.backgroundLayer = this.map.createLayer("bottoms", this.tiles, 0, 0);
+    this.backgroundLayer.setScale(10);
   }
 
   loadNextLevel(endGame) {

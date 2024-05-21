@@ -23,8 +23,18 @@ export default class BootScene extends Phaser.Scene {
     });
 
     // load in our Playercharacter spritesheet
+    this.load.spritesheet("PlayerCharacter", "assets/characters/Rogue_M6.png", {
+      frameWidth: 16,
+      frameHeight: 16,
+    });
+
+    this.load.spritesheet("Rat1", "assets/characters/mics/Rat1.png", {
+      frameWidth: 16,
+      frameHeight: 16,
+    });
+
     this.load.spritesheet(
-      "characters",
+      "animals2",
       "assets/images/roguelikeChar_transparent.png",
       { frameWidth: 17, frameHeight: 17 }
     );

@@ -2,7 +2,7 @@ import "phaser";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y) {
-    super(scene, x, y, "characters", 325);
+    super(scene, x, y, "PlayerCharacter", 325);
     this.scene = scene;
     this.health = 3;
     this.hitDelay = false;
@@ -16,26 +16,43 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.setScale(9.5);
 
     this.scene.events.emit("playerCreate", this.health);
-    this.speed = 350;
-  }
+    this.speed = 500;
 
-  preload() {
-    this.load.spritesheet("player", "assets/characters/Rogue_M6.png", {
-      frameWidth: 23,
-      frameHeight: 32,
+    scene.anims.create({
+      key: "walk-down",
+      frames: scene.anims.generateFrameNumbers("PlayerCharacter", {
+        start: 0,
+        end: 2,
+      }),
+      frameRate: 10,
+      repeat: -1,
     });
 
-    this.arrow = this.add.sprite(359, 277, "player");
-    this.arrow.setOrigin(0, 0);
-    this.arrow.setScale(5);
-    let char = 2;
-    let len = 3;
+    scene.anims.create({
+      key: "walk-left",
+      frames: scene.anims.generateFrameNumbers("PlayerCharacter", {
+        start: 3,
+        end: 5,
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
 
-    this.anims.create({
-      key: "walking_down",
-      frames: this.anims.generateFrameNumbers("test1", {
-        start: start,
-        end: start + len - 1,
+    scene.anims.create({
+      key: "walk-right",
+      frames: scene.anims.generateFrameNumbers("PlayerCharacter", {
+        start: 6,
+        end: 8,
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    scene.anims.create({
+      key: "walk-up",
+      frames: scene.anims.generateFrameNumbers("PlayerCharacter", {
+        start: 9,
+        end: 11,
       }),
       frameRate: 10,
       repeat: -1,
@@ -44,21 +61,37 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   update(cursors) {
     this.setVelocity(0);
-    // check if the up or down key is pressed
+
+    // Check if the up or down key is pressed
     if (cursors.up.isDown) {
       this.direction = "up";
       this.setVelocityY(-this.speed);
+      this.anims.play("walk-up", true);
     } else if (cursors.down.isDown) {
       this.direction = "down";
       this.setVelocityY(this.speed);
+      this.anims.play("walk-down", true);
     }
-    // check if the left or right key is pressed
+
+    // Check if the left or right key is pressed
     if (cursors.left.isDown) {
       this.direction = "left";
       this.setVelocityX(-this.speed);
+      this.anims.play("walk-left", true);
     } else if (cursors.right.isDown) {
       this.direction = "right";
       this.setVelocityX(this.speed);
+      this.anims.play("walk-right", true);
+    }
+
+    // Stop animations if no keys are pressed
+    if (
+      !cursors.up.isDown &&
+      !cursors.down.isDown &&
+      !cursors.left.isDown &&
+      !cursors.right.isDown
+    ) {
+      this.anims.stop();
     }
   }
 
