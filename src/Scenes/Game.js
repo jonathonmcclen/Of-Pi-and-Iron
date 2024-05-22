@@ -52,12 +52,13 @@ export default class GameScene extends Phaser.Scene {
     // create our tilemap
     this.createMap();
 
-    this.mapBounds = {
-      left: 0,
-      right: this.map.widthInPixels,
-      top: 0,
-      bottom: this.map.heightInPixels,
-    };
+    // this.mapBounds = {
+    //   left: 0,
+    //   right: this.map.widthInPixels,
+    //   top: 0,
+    //   bottom: this.map.heightInPixels,
+    // };
+    this.drawBottoms();
     // create our player
     this.createPlayer();
     //draw tops
@@ -103,6 +104,7 @@ export default class GameScene extends Phaser.Scene {
   addCollisions() {
     this.physics.add.collider(this.player, this.blockedLayer);
     this.physics.add.collider(this.player, this.topLayer);
+    this.physics.add.collider(this.player, this.bottomLayer);
     this.physics.add.collider(
       this.player,
       this.decorLayer,
@@ -112,6 +114,8 @@ export default class GameScene extends Phaser.Scene {
     );
 
     this.physics.add.collider(this.enemiesGroup, this.blockedLayer);
+    this.physics.add.collider(this.enemiesGroup, this.topLayer);
+    this.physics.add.collider(this.enemiesGroup, this.bottomLayer);
     this.physics.add.overlap(
       this.player,
       this.enemiesGroup,
@@ -185,7 +189,7 @@ export default class GameScene extends Phaser.Scene {
     this.variationLayer = this.map.createLayer("bg2", this.tiles, 0, 0);
     this.variationLayer.setScale(10);
 
-    this.decorLayer = this.map.createLayer("decor", this.tiles, 0, 0);
+    this.decorLayer = this.map.createLayer("decor2", this.tiles, 0, 0);
     this.decorLayer.setScale(10);
     this.decorLayer.setCollisionByExclusion([-1]);
 
@@ -222,7 +226,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   drawBottoms() {
-    this.bottomLayer = this.map.createLayer("Tops", this.tiles, 0, 0);
+    this.bottomLayer = this.map.createLayer("bottoms", this.tiles, 0, 0);
     this.bottomLayer.setScale(10);
     this.bottomLayer.setCollisionByExclusion([-1]);
 
