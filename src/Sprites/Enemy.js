@@ -1,8 +1,8 @@
 import "phaser";
 
 export default class Enemy extends Phaser.Physics.Arcade.Sprite {
-  constructor(scene, x, y, frame) {
-    super(scene, x, y, "Rat1", frame);
+  constructor(scene, x, y, texture) {
+    super(scene, x, y, texture);
     this.scene = scene;
     this.health = 3;
     this.speed = 200;
@@ -24,7 +24,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     this.anims.create({
       key: "walk-down",
-      frames: scene.anims.generateFrameNumbers("Rat1", {
+      frames: scene.anims.generateFrameNumbers(texture, {
         start: 0,
         end: 2,
       }),
@@ -34,7 +34,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     this.anims.create({
       key: "walk-left",
-      frames: scene.anims.generateFrameNumbers("Rat1", {
+      frames: scene.anims.generateFrameNumbers(texture, {
         start: 3,
         end: 5,
       }),
@@ -44,7 +44,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     this.anims.create({
       key: "walk-right",
-      frames: scene.anims.generateFrameNumbers("Rat1", {
+      frames: scene.anims.generateFrameNumbers(texture, {
         start: 6,
         end: 8,
       }),
@@ -54,7 +54,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
     this.anims.create({
       key: "walk-up",
-      frames: scene.anims.generateFrameNumbers("Rat1", {
+      frames: scene.anims.generateFrameNumbers(texture, {
         start: 9,
         end: 11,
       }),
