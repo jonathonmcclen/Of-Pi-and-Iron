@@ -11,6 +11,26 @@ export default class UIScene extends Phaser.Scene {
 
   create() {
     // create score text
+
+    let todo = [
+      "Collision for Enemies edge of map",
+      "bug: double speed when walking diagonal",
+      "Add Back bottom Layer",
+      "Add crushed grass texture",
+      "add collision for player for edge of map",
+      "add click interaction for enemies",
+      "add sword attack place holder",
+      "Docile Creatures",
+    ];
+
+    for (let i = 0; i < todo.length; i++) {
+      let space = i;
+      this.add.text(12, 70 * space, todo[i], {
+        fontSize: "70px",
+        fill: "red",
+      });
+    }
+
     this.scoreText = this.add.text(12, 12, `Score: ${this.coinsCollected}`, {
       fontSize: "32px",
       fill: "#fff",
@@ -19,36 +39,6 @@ export default class UIScene extends Phaser.Scene {
     // create health text
     this.healthText = this.add.text(12, 50, `Health: 3`, {
       fontSize: "32px",
-      fill: "#fff",
-    });
-
-    this.add.text(12, 70, `Collision for Enemies and Blocked/edge of map`, {
-      fontSize: "70px",
-      fill: "#fff",
-    });
-
-    this.add.text(12, 150, `bug: double speed when walking diagonal`, {
-      fontSize: "70px",
-      fill: "#fff",
-    });
-
-    this.add.text(12, 225, `Remove Bottoms layer add to bg variation layer`, {
-      fontSize: "70px",
-      fill: "#fff",
-    });
-
-    this.add.text(
-      12,
-      300,
-      `Add Decorative collision later for grass and flowers`,
-      {
-        fontSize: "70px",
-        fill: "#fff",
-      }
-    );
-
-    this.add.text(12, 375, `Add tops layer to map to allow walk behind`, {
-      fontSize: "70px",
       fill: "#fff",
     });
 

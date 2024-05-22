@@ -51,8 +51,17 @@ export default class GameScene extends Phaser.Scene {
     // Draw Order
     // create our tilemap
     this.createMap();
+
+    this.mapBounds = {
+      left: 0,
+      right: this.map.widthInPixels,
+      top: 0,
+      bottom: this.map.heightInPixels,
+    };
     // create our player
     this.createPlayer();
+    //draw tops
+
     // creating the portal
     this.createPortal();
     // creating the coins
@@ -62,6 +71,8 @@ export default class GameScene extends Phaser.Scene {
     this.enemies = this.map.createFromObjects("Enemies", "Enemy", {});
     this.enemiesGroup = new Enemies(this.physics.world, this, [], this.enemies);
     // creating the bullets
+
+    this.drawTops();
     this.bullets = new Bullets(this.physics.world, this, []);
 
     // add collisions
@@ -91,6 +102,15 @@ export default class GameScene extends Phaser.Scene {
 
   addCollisions() {
     this.physics.add.collider(this.player, this.blockedLayer);
+    this.physics.add.collider(this.player, this.topLayer);
+    this.physics.add.collider(
+      this.player,
+      this.decorLayer,
+      this.handleTileCollision
+      // null,
+      // this
+    );
+
     this.physics.add.collider(this.enemiesGroup, this.blockedLayer);
     this.physics.add.overlap(
       this.player,
@@ -161,26 +181,60 @@ export default class GameScene extends Phaser.Scene {
     // // create our layers
     this.backgroundLayer = this.map.createLayer("bg", this.tiles, 0, 0);
     this.backgroundLayer.setScale(10);
-    this.blockedLayer = this.map.createLayer("bg2", this.tiles, 0, 0);
-    this.blockedLayer.setScale(10);
-    this.blockedLayer = this.map.createLayer("bottoms", this.tiles, 0, 0);
-    this.blockedLayer.setScale(10);
+
+    this.variationLayer = this.map.createLayer("bg2", this.tiles, 0, 0);
+    this.variationLayer.setScale(10);
+
+    this.decorLayer = this.map.createLayer("decor", this.tiles, 0, 0);
+    this.decorLayer.setScale(10);
+    this.decorLayer.setCollisionByExclusion([-1]);
+
     this.blockedLayer = this.map.createLayer("blocked", this.tiles, 0, 0);
     this.blockedLayer.setScale(10);
     this.blockedLayer.setCollisionByExclusion([-1]);
   }
 
-  drawBottoms() {
-    // add water background
-    this.add.tileSprite(0, 0, 100, 0, "SetV1", 31);
-    // // create the tilemap
-    this.map = this.make.tilemap({ key: this._LEVELS[this._LEVEL] });
-    // // add tileset image
-    this.tiles = this.map.addTilesetImage("SetV1");
+  handleTileCollision(player, tile) {
+    if (tile && tile.layer && tile.layer.tilemapLayer && tile.index != 0) {
+      // Get the tile's current position
+      console.log(tile);
+      const oldTileI = tile.index;
+      // Change the tile to index 0
+      tile.tilemapLayer.putTileAt(-1, tile.x, tile.y);
 
-    // // create our layers
-    this.backgroundLayer = this.map.createLayer("bottoms", this.tiles, 0, 0);
-    this.backgroundLayer.setScale(10);
+      setTimeout(tile.layer.tilemapLayer.putTileAt(555, tile.x, tile.y), 1000);
+    }
+  }
+
+  drawTops() {
+    this.topLayer = this.map.createLayer("Tops", this.tiles, 0, 0);
+    this.topLayer.setScale(10);
+    this.topLayer.setCollisionByExclusion([-1]);
+
+    this.topLayer.forEachTile((tile) => {
+      if (tile.index != 0 && tile.index != -1) {
+        console.log(tile);
+        tile.faceTop = false;
+        tile.faceLeft = false;
+        tile.faceRight = false;
+      }
+    });
+  }
+
+  drawBottoms() {
+    this.bottomLayer = this.map.createLayer("Tops", this.tiles, 0, 0);
+    this.bottomLayer.setScale(10);
+    this.bottomLayer.setCollisionByExclusion([-1]);
+
+    this.bottomLayer.forEachTile((tile) => {
+      if (tile.index != 0 && tile.index != -1) {
+        console.log(tile);
+        tile.faceTop = true;
+        tile.faceLeft = false;
+        tile.faceRight = false;
+        tile.faceBottom = false;
+      }
+    });
   }
 
   loadNextLevel(endGame) {
