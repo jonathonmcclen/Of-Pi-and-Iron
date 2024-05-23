@@ -171,6 +171,7 @@ export default class GameScene extends Phaser.Scene {
       this.bullets.enemyCollision
     );
   }
+  Squirrel;
 
   createPlayer() {
     this.map.findObject("Player", (obj) => {
@@ -223,7 +224,7 @@ export default class GameScene extends Phaser.Scene {
     this.variationLayer = this.map.createLayer("bg2", this.tiles, 0, 0);
     this.variationLayer.setScale(this.scale);
 
-    this.decorLayer = this.map.createLayer("decor2", this.tiles, 0, 0);
+    this.decorLayer = this.map.createLayer("decor", this.tiles, 0, 0);
     this.decorLayer.setScale(this.scale);
     this.decorLayer.setCollisionByExclusion([-1]);
 
@@ -277,9 +278,13 @@ export default class GameScene extends Phaser.Scene {
   }
 
   loadNextLevel(endGame) {
+    //if we arent currently already loading a level
     if (!this.loadingLevel) {
+      //start fade animation
       this.cameras.main.fade(500, 0, 0, 0);
+
       this.cameras.main.on("camerafadeoutcomplete", () => {
+        //if endgame arg is true
         if (endGame) {
           this.scene.restart({ level: 1, levels: this._LEVELS, newGame: true });
         } else if (this._LEVEL === 1) {
