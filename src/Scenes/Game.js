@@ -18,6 +18,7 @@ export default class GameScene extends Phaser.Scene {
     this._NEWGAME = data.newGame;
     this.loadingLevel = false;
     if (this._NEWGAME) this.events.emit("newGame");
+    this.scale = 10;
   }
 
   create() {
@@ -49,29 +50,30 @@ export default class GameScene extends Phaser.Scene {
     );
 
     // Draw Order
-    // create our tilemap
     this.createMap();
-
-    // this.mapBounds = {
-    //   left: 0,
-    //   right: this.map.widthInPixels,
-    //   top: 0,
-    //   bottom: this.map.heightInPixels,
-    // };
     this.drawBottoms();
-    // create our player
     this.createPlayer();
-    //draw tops
 
     // creating the portal
     this.createPortal();
+
     // creating the coins
     this.coins = this.map.createFromObjects("Coins", "Coin", { key: "coin" });
     this.coinsGroup = new Coins(this.physics.world, this, [], this.coins);
+
+    // Grab map bound Immediately
+    this.mapBounds = {
+      left: 0,
+      right: this.map.widthInPixels * 10,
+      top: 0,
+      bottom: this.map.heightInPixels * 10,
+    };
+
+    console.log(this.mapBounds);
+
     // creating the enemies
     this.enemies = this.map.createFromObjects("Enemies", "Enemy", {});
     this.enemiesGroup = new Enemies(this.physics.world, this, [], this.enemies);
-    // creating the bullets
 
     this.drawTops();
     this.bullets = new Bullets(this.physics.world, this, []);
@@ -84,6 +86,10 @@ export default class GameScene extends Phaser.Scene {
   }
 
   update() {
+    this.checkBoundaryCollision(this.player);
+
+    // this.checkBoundaryCollision(this.);
+
     this.player.update(this.cursors);
 
     if (Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
@@ -101,10 +107,30 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
+  checkBoundaryCollision(sprite) {
+    // Check if the sprite is outside the map bounds
+    if (sprite.x - 8 * this.scale < this.mapBounds.left) {
+      sprite.x = this.mapBounds.left + 8 * this.scale;
+      console.log("LEft");
+    } else if (sprite.x + 8 * this.scale > this.mapBounds.right) {
+      sprite.x = this.mapBounds.right - 8 * this.scale;
+      console.log("Right");
+    }
+
+    if (sprite.y - 8 * 10 < this.mapBounds.top) {
+      sprite.y = this.mapBounds.top + 8 * this.scale;
+      console.log("top");
+    } else if (sprite.y + 8 * 10 > this.mapBounds.bottom) {
+      sprite.y = this.mapBounds.bottom - 8 * this.scale;
+      console.log("Bottom");
+    }
+  }
+
   addCollisions() {
     this.physics.add.collider(this.player, this.blockedLayer);
     this.physics.add.collider(this.player, this.topLayer);
     this.physics.add.collider(this.player, this.bottomLayer);
+
     this.physics.add.collider(
       this.player,
       this.decorLayer,
@@ -112,6 +138,14 @@ export default class GameScene extends Phaser.Scene {
       // null,
       // this
     );
+
+    // this.physics.add.overlap(
+    //   this.player.swordHitbox,
+    //   this.enemies,
+    //   this.handleSwordHitboxEnemyCollision,
+    //   null,
+    //   this
+    // );
 
     this.physics.add.collider(this.enemiesGroup, this.blockedLayer);
     this.physics.add.collider(this.enemiesGroup, this.topLayer);
@@ -184,40 +218,42 @@ export default class GameScene extends Phaser.Scene {
 
     // // create our layers
     this.backgroundLayer = this.map.createLayer("bg", this.tiles, 0, 0);
-    this.backgroundLayer.setScale(10);
+    this.backgroundLayer.setScale(this.scale);
 
     this.variationLayer = this.map.createLayer("bg2", this.tiles, 0, 0);
-    this.variationLayer.setScale(10);
+    this.variationLayer.setScale(this.scale);
 
     this.decorLayer = this.map.createLayer("decor2", this.tiles, 0, 0);
-    this.decorLayer.setScale(10);
+    this.decorLayer.setScale(this.scale);
     this.decorLayer.setCollisionByExclusion([-1]);
 
     this.blockedLayer = this.map.createLayer("blocked", this.tiles, 0, 0);
-    this.blockedLayer.setScale(10);
+    this.blockedLayer.setScale(this.scale);
     this.blockedLayer.setCollisionByExclusion([-1]);
   }
 
   handleTileCollision(player, tile) {
     if (tile && tile.layer && tile.layer.tilemapLayer && tile.index != 0) {
-      // Get the tile's current position
-      console.log(tile);
       const oldTileI = tile.index;
-      // Change the tile to index 0
       tile.tilemapLayer.putTileAt(-1, tile.x, tile.y);
 
       setTimeout(tile.layer.tilemapLayer.putTileAt(555, tile.x, tile.y), 1000);
     }
   }
 
+  // handleSwordHitboxEnemyCollision(enemy) {
+  //   if (enemy) {
+  //     enemy.destroy;
+  //   }
+  // }
+
   drawTops() {
     this.topLayer = this.map.createLayer("Tops", this.tiles, 0, 0);
-    this.topLayer.setScale(10);
+    this.topLayer.setScale(this.scale);
     this.topLayer.setCollisionByExclusion([-1]);
 
     this.topLayer.forEachTile((tile) => {
       if (tile.index != 0 && tile.index != -1) {
-        console.log(tile);
         tile.faceTop = false;
         tile.faceLeft = false;
         tile.faceRight = false;
@@ -227,12 +263,11 @@ export default class GameScene extends Phaser.Scene {
 
   drawBottoms() {
     this.bottomLayer = this.map.createLayer("bottoms", this.tiles, 0, 0);
-    this.bottomLayer.setScale(10);
+    this.bottomLayer.setScale(this.scale);
     this.bottomLayer.setCollisionByExclusion([-1]);
 
     this.bottomLayer.forEachTile((tile) => {
       if (tile.index != 0 && tile.index != -1) {
-        console.log(tile);
         tile.faceTop = true;
         tile.faceLeft = false;
         tile.faceRight = false;

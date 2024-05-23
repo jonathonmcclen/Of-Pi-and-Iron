@@ -14,10 +14,10 @@ export default class UIScene extends Phaser.Scene {
 
     let todo = [
       "Collision for Enemies edge of map",
+      "Add portals to towns",
+      "add portals for boundries",
       "bug: double speed when walking diagonal",
-      "Add Back bottom Layer",
       "Add crushed grass texture",
-      "add collision for player for edge of map",
       "add click interaction for enemies",
       "add sword attack place holder",
       "Docile Creatures",

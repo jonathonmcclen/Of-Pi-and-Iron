@@ -57,6 +57,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       frameRate: 10,
       repeat: -1,
     });
+
+    // Add an input for the space key
+    this.spaceKey = scene.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.SPACE
+    );
+
+    // Listen for space key events
+    this.spaceKey.on("down", () => {
+      this.swingSword();
+    });
   }
 
   update(cursors) {
@@ -93,6 +103,34 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     ) {
       this.anims.stop();
     }
+
+    if (this.hitbox) {
+      console.log(this.hitbox);
+      this.updateHitboxPosition();
+    }
+  }
+
+  updateHitboxPosition() {
+    const offset = this.width + 8 * this.scene.scale; // Adjust offset based on scale
+
+    switch (this.direction) {
+      case "up":
+        this.hitboxX = this.x;
+        this.hitboxY = this.y - offset;
+        break;
+      case "down":
+        this.hitboxX = this.x;
+        this.hitboxY = this.y + offset;
+        break;
+      case "left":
+        this.hitboxX = this.x - offset;
+        this.hitboxY = this.y;
+        break;
+      case "right":
+        this.hitboxX = this.x + offset;
+        this.hitboxY = this.y;
+        break;
+    }
   }
 
   loseHealth() {
@@ -117,5 +155,64 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         callbackScope: this,
       });
     }
+  }
+
+  swingSword() {
+    if (this.hitbox) {
+      this.hitbox.destroy();
+    }
+    // Calculate hitbox position based on player's direction
+    this.hitboxX = this.x;
+    this.hitboxY = this.y;
+    const hitboxSize = 100; // Size of the hitbox
+    const offset = this.width + 8 * this.scene.scale; // Adjust offset based on scale
+
+    switch (this.direction) {
+      case "up":
+        this.hitboxY -= offset;
+        break;
+      case "down":
+        this.hitboxY += offset;
+        break;
+      case "left":
+        this.hitboxX -= offset;
+        break;
+      case "right":
+        this.hitboxX += offset;
+        break;
+    }
+
+    // Create a visible hitbox
+    this.hitbox = this.scene.add.rectangle(
+      this.hitboxX,
+      this.hitboxY,
+      hitboxSize,
+      hitboxSize,
+      0xff0000,
+      1
+    );
+    this.scene.physics.world.enable(this.hitbox);
+    this.hitbox.body.setAllowGravity(false);
+    this.hitbox.body.immovable = false;
+
+    // // Check collision between hitbox and enemies
+    // this.scene.physics.add.overlap(
+    //   hitbox,
+    //   this.scene.enemies,
+    //   (hitbox, enemy) => {
+    //     // Handle collision (e.g., damage the enemy)
+    //     enemy.destroy(); // Example action: destroy the enemy
+    //   }
+    // );
+
+    // Destroy the hitbox after a short duration
+    this.scene.time.addEvent({
+      delay: 100, // Duration in milliseconds
+      callback: () => {
+        this.hitbox && this.hitbox.destroy();
+        this.hitbox = null;
+      },
+      callbackScope: this,
+    });
   }
 }
