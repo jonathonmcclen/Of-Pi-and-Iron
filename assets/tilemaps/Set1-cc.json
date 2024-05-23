@@ -360,7 +360,7 @@
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
          "height":50,
          "id":14,
-         "name":"bottoms",
+         "name":"Bottoms",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
@@ -431,29 +431,6 @@
         }, 
         {
          "draworder":"topdown",
-         "id":6,
-         "name":"Player",
-         "objects":[
-                {
-                 "height":0,
-                 "id":1,
-                 "name":"StartingPosition",
-                 "point":true,
-                 "rotation":0,
-                 "type":"StartingPosition",
-                 "visible":true,
-                 "width":0,
-                 "x":359,
-                 "y":277
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":false,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"topdown",
          "id":7,
          "name":"Enemies",
          "objects":[
@@ -466,8 +443,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":220.667,
-                 "y":371.333
+                 "x":294.667,
+                 "y":324.666333333333
                 }, 
                 {
                  "height":0,
@@ -478,8 +455,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":300.667,
-                 "y":423.333
+                 "x":402.000333333333,
+                 "y":345.999666666667
                 }, 
                 {
                  "height":0,
@@ -490,8 +467,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":208,
-                 "y":470.667
+                 "x":194,
+                 "y":382.667
                 }, 
                 {
                  "height":0,
@@ -502,8 +479,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":302.667,
-                 "y":610.667
+                 "x":356.000333333333,
+                 "y":571.333666666667
                 }, 
                 {
                  "height":0,
@@ -514,8 +491,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":451.333,
-                 "y":627.333
+                 "x":271.999666666667,
+                 "y":470.666333333333
                 }, 
                 {
                  "height":0,
@@ -526,8 +503,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":459.333,
-                 "y":544.667
+                 "x":327.333,
+                 "y":408.667
                 }, 
                 {
                  "height":0,
@@ -538,8 +515,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":530,
-                 "y":524
+                 "x":405.333333333333,
+                 "y":478
                 }, 
                 {
                  "height":0,
@@ -550,8 +527,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":538,
-                 "y":691.333
+                 "x":268.666666666667,
+                 "y":539.333
                 }, 
                 {
                  "height":0,
@@ -562,32 +539,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":520,
-                 "y":179.333
-                }, 
-                {
-                 "height":0,
-                 "id":12,
-                 "name":"Rat",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":574.667,
-                 "y":148
-                }, 
-                {
-                 "height":0,
-                 "id":13,
-                 "name":"Rat",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":642.667,
-                 "y":214.667
+                 "x":248,
+                 "y":189.999666666667
                 }, 
                 {
                  "height":0,
@@ -598,20 +551,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":664,
-                 "y":135.333
-                }, 
-                {
-                 "height":0,
-                 "id":15,
-                 "name":"Rat",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":714,
-                 "y":206
+                 "x":72,
+                 "y":206.666333333333
                 }, 
                 {
                  "height":0,
@@ -622,8 +563,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":582,
-                 "y":211.333
+                 "x":355.333333333333,
+                 "y":169.333
                 }, 
                 {
                  "height":0,
@@ -634,8 +575,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":505.333,
-                 "y":112.667
+                 "x":201.333,
+                 "y":128.667
                 }, 
                 {
                  "height":0,
@@ -646,8 +587,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":681.333,
-                 "y":356.667
+                 "x":727.999666666667,
+                 "y":162.667
                 }, 
                 {
                  "height":0,
@@ -658,8 +599,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":606,
-                 "y":391.333
+                 "x":651.333333333333,
+                 "y":241.999666666667
                 }, 
                 {
                  "height":0,
@@ -670,8 +611,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":692,
-                 "y":426.667
+                 "x":750.666666666667,
+                 "y":234.667
                 }, 
                 {
                  "height":0,
@@ -682,8 +623,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":711.333,
-                 "y":292
+                 "x":731.999666666667,
+                 "y":94.6666666666667
                 }, 
                 {
                  "height":0,
@@ -694,56 +635,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":646,
-                 "y":300.667
-                }, 
-                {
-                 "height":0,
-                 "id":23,
-                 "name":"Buck",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":471.333,
-                 "y":724.667
-                }, 
-                {
-                 "height":0,
-                 "id":24,
-                 "name":"Bear",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":408,
-                 "y":652
-                }, 
-                {
-                 "height":0,
-                 "id":26,
-                 "name":"mtnLion",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":70.6667,
-                 "y":498.667
-                }, 
-                {
-                 "height":0,
-                 "id":27,
-                 "name":"mtnLion",
-                 "point":true,
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":48.6667,
-                 "y":602.667
+                 "x":640,
+                 "y":164.667
                 }, 
                 {
                  "height":0,
@@ -754,12 +647,108 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":129.333,
-                 "y":546.667
+                 "x":119.333,
+                 "y":712.000333333333
+                }, 
+                {
+                 "height":0,
+                 "id":166,
+                 "name":"Squirrel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":164,
+                 "y":88.6666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":167,
+                 "name":"Squirrel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":122,
+                 "y":138
+                }, 
+                {
+                 "height":0,
+                 "id":168,
+                 "name":"Squirrel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":144.666666666667,
+                 "y":247.333333333333
+                }, 
+                {
+                 "height":0,
+                 "id":169,
+                 "name":"Squirrel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":66.6666666666667,
+                 "y":276.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":170,
+                 "name":"Squirrel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":216,
+                 "y":294
+                }, 
+                {
+                 "height":0,
+                 "id":171,
+                 "name":"Squirrel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":284,
+                 "y":142.666666666667
+                }, 
+                {
+                 "height":0,
+                 "id":172,
+                 "name":"Squirrel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":206,
+                 "y":200
+                }, 
+                {
+                 "height":0,
+                 "id":173,
+                 "name":"Squirrel",
+                 "point":true,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":300,
+                 "y":240
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2385,7 +2374,7 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":166,
+ "nextobjectid":174,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
