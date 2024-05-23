@@ -51,7 +51,7 @@ export default class Bullets extends Phaser.Physics.Arcade.Group {
         callback: () => {
           bullet.active = false;
           bullet.visible = false;
-          if (bullet) {
+          if (bullet.body) {
             bullet.body.setVelocity(0);
             bullet.destroy();
           }
