@@ -14,7 +14,7 @@ export default class BootScene extends Phaser.Scene {
 
     // load tilemaps for Levels
     this.load.tilemapTiledJSON("SetV1", "assets/tilemaps/SetV1.json");
-    this.load.tilemapTiledJSON("level2", "assets/tilemaps/level2.json");
+    this.load.tilemapTiledJSON("level2", "assets/tilemaps/Set1-cc.json");
 
     // load Level
     this.load.spritesheet("SetV1", "assets/OverWorld/SetV1.png", {

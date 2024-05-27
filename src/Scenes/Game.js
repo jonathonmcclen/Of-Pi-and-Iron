@@ -110,18 +110,18 @@ export default class GameScene extends Phaser.Scene {
   checkBoundaryCollision(sprite) {
     // Check if the sprite is outside the map bounds
     if (sprite.x - 8 * this.scale < this.mapBounds.left) {
-      sprite.x = this.mapBounds.left + 8 * this.scale;
+      this.scene.restart({ level: 2, levels: this._LEVELS, newGame: true });
       console.log("LEft");
     } else if (sprite.x + 8 * this.scale > this.mapBounds.right) {
-      sprite.x = this.mapBounds.right - 8 * this.scale;
+      this.scene.restart({ level: 1, levels: this._LEVELS, newGame: true });
       console.log("Right");
     }
 
     if (sprite.y - 8 * 10 < this.mapBounds.top) {
-      sprite.y = this.mapBounds.top + 8 * this.scale;
+      this.scene.restart({ level: 1, levels: this._LEVELS, newGame: true });
       console.log("top");
     } else if (sprite.y + 8 * 10 > this.mapBounds.bottom) {
-      sprite.y = this.mapBounds.bottom - 8 * this.scale;
+      this.scene.restart({ level: 1, levels: this._LEVELS, newGame: true });
       console.log("Bottom");
     }
   }
@@ -171,7 +171,6 @@ export default class GameScene extends Phaser.Scene {
       this.bullets.enemyCollision
     );
   }
-  Squirrel;
 
   createPlayer() {
     this.map.findObject("Player", (obj) => {
@@ -228,7 +227,7 @@ export default class GameScene extends Phaser.Scene {
     this.decorLayer.setScale(this.scale);
     this.decorLayer.setCollisionByExclusion([-1]);
 
-    this.blockedLayer = this.map.createLayer("blocked", this.tiles, 0, 0);
+    this.blockedLayer = this.map.createLayer("Blocked", this.tiles, 0, 0);
     this.blockedLayer.setScale(this.scale);
     this.blockedLayer.setCollisionByExclusion([-1]);
   }
@@ -263,7 +262,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   drawBottoms() {
-    this.bottomLayer = this.map.createLayer("bottoms", this.tiles, 0, 0);
+    this.bottomLayer = this.map.createLayer("Bottoms", this.tiles, 0, 0);
     this.bottomLayer.setScale(this.scale);
     this.bottomLayer.setCollisionByExclusion([-1]);
 

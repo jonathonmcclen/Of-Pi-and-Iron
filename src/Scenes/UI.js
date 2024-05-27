@@ -10,17 +10,15 @@ export default class UIScene extends Phaser.Scene {
   }
 
   create() {
-    // create score text
-
     let todo = [
       "Collision for Enemies edge of map",
-      "Add portals to towns",
-      "add portals for boundries",
+      "add 1 town",
+      "add 3 surrounding areas CC, CD, and DD",
       "bug: double speed when walking diagonal",
       "Add crushed grass texture",
       "add click interaction for enemies",
-      "add sword attack place holder",
-      "Docile Creatures",
+      "add sword attack collision",
+      "Docile Creatures class extension ",
     ];
 
     for (let i = 0; i < todo.length; i++) {
